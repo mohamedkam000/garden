@@ -64,8 +64,9 @@ function setAccent(hex){
         tag.className = 'tag';
         tag.textContent = 'Alpha';
         el.appendChild(tag);
-        el.addEventListener('click', ()=>navigateTo('city/'+c.id));
-        el.addEventListener('keypress', (e)=>{ if(e.key==='Enter') navigateTo('city/'+c.id); });
+        el.addEventListener('click', ()=>showDetails(c));
+        el.addEventListener('keypress', (e)=>{ if(e.key==='Enter') showDetails(c); });
+//        el.addEventListener('keypress', (e)=>{ if(e.key==='Enter') navigateTo('city/'+c.id); });
         cardsGrid.appendChild(el);
       });
     }
@@ -158,6 +159,12 @@ function showDetails(city) {
 
 renderCards();
 navigateTo(location.pathname,{push:false});
+
+
+
+
+
+
 
 /*
  * This makes the title colours dance. Don't touch it.
