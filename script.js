@@ -161,55 +161,6 @@ function showGrid() {
   history.replaceState({path:'/'}, '', BASE);
 }
 
-/*const BASE = '/garden/';
-
-function navigateTo(path, opts={push:true}) {
-  const url = BASE + path.replace(/^\/+/,'');
-  if (opts.push) history.pushState({path}, '', url);
-
-  if (path === '/' || path === '' || path === 'index.html') {
-    showGrid();
-    return;
-  }
-
-  const cityMatch = path.match(/([a-z]+)\.html$/i);
-  if (cityMatch) {
-    const city = cities.find(c => c.id === cityMatch[1]) || cities[0];
-    showDetails(city);
-    return;
-  }
-
-  showGrid();
-}
-
-function showGrid() {
-  detailView.classList.add('hidden');
-  gridView.classList.remove('hidden');
-  renderCards();
-  document.title = 'Sooq Price';
-  history.replaceState({path:'/'}, '', BASE);
-}*/
-
-/*function showDetails(city) {
-  fetch(`${city.id}.html`)
-    .then(res => res.text())
-    .then(html => {
-      detailContent.innerHTML = html;  
-      gridView.classList.add('hidden');
-      detailView.classList.remove('hidden');
-      document.title = city.name + ' — Price Tracker';
-      const backBtn = detailContent.querySelector('#backBtn');
-      if (backBtn) {
-        backBtn.addEventListener('click', () => navigateTo('/', { push:true }));
-      }
-    })
-    .catch(() => {
-      detailContent.innerHTML = `<h2>${city.name}</h2><p>No custom page found.</p>`;
-      gridView.classList.add('hidden');
-      detailView.classList.remove('hidden');
-    });
-}*/
-
 function showMarkets(state) {
   detailContent.innerHTML = '';
   detailView.classList.remove('hidden');
@@ -225,17 +176,23 @@ function showMarkets(state) {
 
   state.markets.forEach(market => {
     const el = document.createElement('article');
-    el.className = 'card market-card';
-    const imgUrl = market.img || 'https://via.placeholder.com/800x500?text=No+Image';
+    el.className = 'card';
     el.innerHTML = `
-      <div class="img" style="background-image:url('${imgUrl}')"></div>
+      <div class="img" style="background-image:url('${market.img}')"></div>
       <div class="title-band">
         <div style="display:flex;flex-direction:column">
           <div class="city">${market.name}</div>
-          <div class="desc">Open market to view goods</div>
+          <div class="desc">Select market to explore goods</div>
         </div>
       </div>
+      <div class="meta">
+        <div class="desc">Click to see goods in this market</div>
+      </div>
     `;
+    const tag = document.createElement('div');
+    tag.className = 'tag';
+    tag.textContent = 'Market';
+    el.appendChild(tag);
     el.addEventListener('click', () => showGoods(state, market));
     marketGrid.appendChild(el);
   });
