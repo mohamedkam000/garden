@@ -111,8 +111,6 @@ function renderCards() {
     tag.className = 'tag';
     tag.textContent = 'Alpha';
     el.appendChild(tag);
-
-    // Clicking a state shows its markets
     el.addEventListener('click', () => showMarkets(state));
     el.addEventListener('keypress', (e) => { if(e.key === 'Enter') showMarkets(state); });
 
@@ -121,6 +119,48 @@ function renderCards() {
 }
 
 const BASE = '/garden/';
+
+function navigateTo(path, opts={push:true}) {
+  const url = BASE + path.replace(/^\/+/,'');
+  if (opts.push) history.pushState({path}, '', url);
+
+  if (path === '/' || path === '' || path === 'index.html') {
+    showGrid();
+    return;
+  }
+
+  const stateMatch = path.match(/^state\/([a-z]+)/i);
+  if (stateMatch) {
+    const state = states.find(s => s.id === stateMatch[1]);
+    if (state) { showMarkets(state); return; }
+  }
+
+  const marketMatch = path.match(/^state\/([a-z]+)\/market\/([a-z]+)/i);
+  if (marketMatch) {
+    const state = states.find(s => s.id === marketMatch[1]);
+    const market = state?.markets.find(m => m.id === marketMatch[2]);
+    if (state && market) { showGoods(state, market); return; }
+  }
+  const goodMatch = path.match(/^state\/([a-z]+)\/market\/([a-z]+)\/good\/([a-z]+)/i);
+  if (goodMatch) {
+    const state = states.find(s => s.id === goodMatch[1]);
+    const market = state?.markets.find(m => m.id === goodMatch[2]);
+    const good = market?.goods.find(g => g.id === goodMatch[3]);
+    if (state && market && good) { showGoodDetail(state, market, good); return; }
+  }
+
+  showGrid();
+}
+
+function showGrid() {
+  detailView.classList.add('hidden');
+  gridView.classList.remove('hidden');
+  renderCards();
+  document.title = 'Sooq Price';
+  history.replaceState({path:'/'}, '', BASE);
+}
+
+/*const BASE = '/garden/';
 
 function navigateTo(path, opts={push:true}) {
   const url = BASE + path.replace(/^\/+/,'');
@@ -147,7 +187,7 @@ function showGrid() {
   renderCards();
   document.title = 'Sooq Price';
   history.replaceState({path:'/'}, '', BASE);
-}
+}*/
 
 /*function showDetails(city) {
   fetch(`${city.id}.html`)
