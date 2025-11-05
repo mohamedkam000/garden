@@ -1,40 +1,93 @@
-    const cities = [
-      {id:'khartoum',name:'Khartoum',img:'https://images.unsplash.com/photo-1659864216522-494efbd76895?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8a2hhcnRvdW18ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=1200',price:'$1,200'},
-      {id:'jazeera',name:'Al-Jazeera',img:'https://www.alnilin.com/wp-content/uploads/2023/09/madani_kush-780x470.jpg',price:'$940'},
-      {id:'rivernile',name:'River Nile',img:'https://www.sudanakhbar.com/wp-content/uploads/2024/10/445.jpg',price:'$780'},
-      {id:'nsudan',name:'Northern Sudan',img:'https://sudanjournal.com/wp-content/uploads/2021/01/a1bd13c5fc813f0c17a64c8d52265180.jpg',price:'$1,050'},
-      {id:'rsea',name:'Red Sea',img:'https://i0.wp.com/arabscountries.com/wp-content/uploads/2022/11/The-Red-Sea-1.jpg',price:'$1,430'},
-      {id:'kassala',name:'Kassala',img:'https://saqraljidyanews.com/wp-content/uploads/2020/08/d6e7a4bc43ae7ef56f2bcf0bb6571f6e.jpg',price:'$1,120'},
-      {id:'sinnar',name:'Sinnar',img:'https://kushnews.net/wp-content/uploads/2023/09/sinnar_kush.jpg',price:''}
-    ];
+const states = [
+  {
+    id: 'khartoum',
+    name: 'Khartoum',
+    img: 'https://images.unsplash.com/photo-1659864216522-494efbd76895?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8a2hhcnRvdW18ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=1200', 
+    markets: [
+      {
+        id: 'central',
+        name: 'Central Market',
+        goods: [
+          {
+            id: 'vegetables',
+            name: 'Vegetables',
+            price: '$540',
+            img: '...'
+          },
+          { id: 'grains',
+            name: 'Grains',
+            price: '$320',
+            img: '...'
+          },
+        ]
+      },
+      {
+        id: 'sabreen',
+        name: 'Sabreen Market',
+        goods: [
+          { id: 'livestock', name: 'Livestock', price: '$1020', img: '...' },
+        ]
+      }
+    ]
+  },
+  {
+    id: 'jazeera',
+    name: 'Al-Jazeera',
+    img: 'https://www.alnilin.com/wp-content/uploads/2023/09/madani_kush-780x470.jpg',
+    markets: [
+    ]
+  },
+  {
+    id: 'rivernile',
+    name: 'River Nile',
+    img: 'https://www.alnilin.com/wp-content/uploads/2023/09/madani_kush-780x470.jpg',
+    markets: [
+    ]
+  },
+  {
+    id: 'nsudan',
+    name: 'Northern Sudan',
+    img: 'https://sudanjournal.com/wp-content/uploads/2021/01/a1bd13c5fc813f0c17a64c8d52265180.jpg',
+    markets: [
+    ]
+  },
+  {
+    id: 'rsea',
+    name: 'Red Sea',
+    img: 'https://i0.wp.com/arabscountries.com/wp-content/uploads/2022/11/The-Red-Sea-1.jpg',
+    markets: [
+    ]
+  },
+  {
+    id: 'kassala',
+    name: 'Kassala',
+    img: 'https://saqraljidyanews.com/wp-content/uploads/2020/08/d6e7a4bc43ae7ef56f2bcf0bb6571f6e.jpg',
+    markets: [
+    ]
+  },
+  {
+    id: 'sinnar',
+    name: 'Sinnar',
+    img: 'https://kushnews.net/wp-content/uploads/2023/09/sinnar_kush.jpg',
+    markets: [
+    ]
+  },
+];
 
-    const accents = [
-  '#06b6d4','#6366f1','#ef4444','#f59e0b','#10b981','#8b5cf6','#ec4899','#f97316',
-  '#22c55e','#0ea5e9','#ef5350','#a78bfa','#fb7185','#60a5fa','#34d399','#f43f5e',
-  '#f87171','#4ade80','#60a5fa','#facc15','#c084fc','#f472b6','#38bdf8','#f97316',
-  '#22c55e','#6366f1','#f43f5e','#3b82f6','#84cc16','#e879f9','#fbbf24','#10b981',
-  '#7c3aed','#f87171','#2dd4bf','#fcd34d','#e11d48','#6366f1','#f97316','#22d3ee',
-  '#16a34a','#f59e0b','#8b5cf6','#f472b6','#0ea5e9','#ea580c','#4ade80','#f43f5e',
-  '#60a5fa','#db2777','#22c55e','#fcd34d','#9333ea','#f87171'
-    ];
+const accents = [
+'#06b6d4','#6366f1','#ef4444','#f59e0b','#10b981','#8b5cf6','#ec4899','#f97316',
+'#22c55e','#0ea5e9','#ef5350','#a78bfa','#fb7185','#60a5fa','#34d399','#f43f5e',
+'#f87171','#4ade80','#60a5fa','#facc15','#c084fc','#f472b6','#38bdf8','#f97316',
+'#22c55e','#6366f1','#f43f5e','#3b82f6','#84cc16','#e879f9','#fbbf24','#10b981',
+'#7c3aed','#f87171','#2dd4bf','#fcd34d','#e11d48','#6366f1','#f97316','#22d3ee',
+'#16a34a','#f59e0b','#8b5cf6','#f472b6','#0ea5e9','#ea580c','#4ade80','#f43f5e',
+'#60a5fa','#db2777','#22c55e','#fcd34d','#9333ea','#f87171'
+];
 
-    const cardsGrid = document.getElementById('cardsGrid');
-    const gridView = document.getElementById('gridView');
-    const detailView = document.getElementById('detailView');
-    const detailContent = document.getElementById('detailContent');
-
-    const savedAccent = localStorage.getItem('accentColor');
-    if(savedAccent) setAccent(savedAccent);
-
-function randomAccent(){
-  return accents[Math.floor(Math.random()*accents.length)];
-}
-
-function setAccent(hex){
-  document.documentElement.style.setProperty('--accent', hex);
-}
-
-    document.getElementById('titleColored').addEventListener('click', ()=>setAccent(randomAccent()));
+const cardsGrid = document.getElementById('cardsGrid');
+const gridView = document.getElementById('gridView');
+const detailView = document.getElementById('detailView');
+const detailContent = document.getElementById('detailContent');
 
 function renderCards(){
   cardsGrid.innerHTML = '';
@@ -63,29 +116,6 @@ function renderCards(){
     cardsGrid.appendChild(el);
   });
 }
-
-/*function navigateTo(path, opts={push:true}) {
-  if (opts.push) history.pushState({path}, '', path);
-  if (path === '/' || path === '' || path.endsWith('index.html')) {
-    showGrid();
-    return;
-  }
-  const cityMatch = path.match(/\/?([a-z]+)\.html$/i);
-  if (cityMatch) {
-    const city = cities.find(c => c.id === cityMatch[1]) || cities[0];
-    showDetails(city);
-    return;
-  }
-
-  showGrid();
-}
-
-function showGrid(){
-  detailView.classList.add('hidden');
-  gridView.classList.remove('hidden');
-  renderCards();
-  document.title='Sooq Price';
-}*/
 
 const BASE = '/garden/';
 
@@ -116,7 +146,7 @@ function showGrid() {
   history.replaceState({path:'/'}, '', BASE);
 }
 
-function showDetails(city) {
+/*function showDetails(city) {
   fetch(`${city.id}.html`)
     .then(res => res.text())
     .then(html => {
@@ -134,15 +164,73 @@ function showDetails(city) {
       gridView.classList.add('hidden');
       detailView.classList.remove('hidden');
     });
+}*/
+
+function showMarkets(state) {
+  detailContent.innerHTML = '';
+  detailView.classList.remove('hidden');
+  gridView.classList.add('hidden');
+
+  detailContent.innerHTML = `
+    <h2>${state.name} Markets</h2>
+    <div class="market-grid"></div>
+    <button class="btn" id="backBtn">Back</button>
+  `;
+
+  const marketGrid = detailContent.querySelector('.market-grid');
+
+  state.markets.forEach(market => {
+    const el = document.createElement('div');
+    el.className = 'market-card';
+    el.innerHTML = `<div>${market.name}</div>`;
+    el.addEventListener('click', () => showGoods(state, market));
+    marketGrid.appendChild(el);
+  });
+
+  const backBtn = detailContent.querySelector('#backBtn');
+  backBtn.addEventListener('click', () => showGrid());
 }
 
-    setInterval(() => {
-      document.querySelectorAll('.letter').forEach((span, i) => {
-        span.style.color = accents[Math.floor(Math.random() * accents.length)];
-      });
-    }, 2000);
-    document.body.setAttribute("data-theme", "light");
+function showGoods(state, market) {
+  detailContent.innerHTML = '';
+  detailContent.innerHTML = `
+    <h2>${market.name} — Goods</h2>
+    <div class="goods-grid"></div>
+    <button class="btn" id="backBtn">Back</button>
+  `;
 
+  const goodsGrid = detailContent.querySelector('.goods-grid');
+
+  market.goods.forEach(good => {
+    const el = document.createElement('div');
+    el.className = 'good-card';
+    el.innerHTML = `<div>${good.name} — ${good.price}</div>`;
+    el.addEventListener('click', () => showGoodDetail(state, market, good));
+    goodsGrid.appendChild(el);
+  });
+
+  const backBtn = detailContent.querySelector('#backBtn');
+  backBtn.addEventListener('click', () => showMarkets(state));
+}
+
+function showGoodDetail(state, market, good) {
+  detailContent.innerHTML = '';
+  detailContent.innerHTML = `
+    <h2>${good.name}</h2>
+    <p>${good.description || 'No details available.'}</p>
+    <ul>
+      ${good.stats ? Object.entries(good.stats).map(([k,v]) =>
+        `<li><strong>${k}:</strong> ${Array.isArray(v)?v.join(', '):v}</li>`).join('') : ''}
+    </ul>
+    <button class="btn" id="backBtn">Back</button>
+  `;
+
+  const backBtn = detailContent.querySelector('#backBtn');
+  backBtn.addEventListener('click', () => showGoods(state, market));
+}
+
+renderCards();
+navigateTo(location.pathname,{push:false});
 
 /*document.getElementById('backBtn').addEventListener('click', () => {
   navigateTo('/', {push:true});
@@ -151,10 +239,6 @@ function showDetails(city) {
 /*
 window.addEventListener('popstate',()=>navigateTo(location.pathname,{push:false}));*/
 
-renderCards();
-navigateTo(location.pathname,{push:false});
-
-
 
 
 
@@ -169,7 +253,30 @@ navigateTo(location.pathname,{push:false});
 
 
 /*
- * This makes the title colours dance. Don't touch it.
+ * This sets the UI to use the light theme defined in the style file.
+ */
+document.body.setAttribute("data-theme", "light");
+
+/*
+ * This part is supposed to control accent colours.
+ * There's a click listener to randomly set a new accent colour.
+ * Don't touch this part. Just don't.
+ */
+const savedAccent = localStorage.getItem('accentColor');
+if(savedAccent) setAccent(savedAccent);
+
+function randomAccent() {
+  return accents[Math.floor(Math.random()*accents.length)];
+}
+
+function setAccent(hex) {
+  document.documentElement.style.setProperty('--accent', hex);
+}
+
+document.getElementById('titleColored').addEventListener('click', ()=>setAccent(randomAccent()));
+
+/*
+ * This makes the title colours dance. Don't touch it unless you have a better idea.
  */
 const titleText = 'Sooq Price';
 const titleColored = document.getElementById('titleColored');
@@ -183,8 +290,17 @@ titleText.split('').forEach((ch,i)=>{
 });
 
 /*
- * This is the footer. Don't worry about it and go fix something else.
- * Seriously, stay away.
+ * This small snippet sets the interval for changing colours on the title.
+ */
+setInterval(() => {
+  document.querySelectorAll('.letter').forEach((span, i) => {
+    span.style.color = accents[Math.floor(Math.random() * accents.length)];
+  });
+}, 200);
+
+/*
+ * This is the footer. It shows my name based in the accent colour.
+ * Unless you want it to glow, don't touch this part.
  */
 const fooText = 'Muhammad Kamal';
 const fooColored = document.getElementById('footer');
@@ -195,7 +311,6 @@ fooText.split('').forEach((ch,i)=>{
   span.textContent = ch;
   fooColored.appendChild(span);
 });
-
 const footer = document.getElementById('footer');
 
 function updateFooter() {
@@ -204,6 +319,10 @@ function updateFooter() {
 
 updateFooter();
 
+/*
+ * This part is responsible for fetching current date/time and showing it.
+ * There's a code to refresh the time every specific milliseconds.
+ */
 const dateEl = document.getElementById('date');
 
 function updateDate() {
@@ -213,4 +332,4 @@ function updateDate() {
 }
 
 updateDate();
-setInterval(updateDate, 86400000);
+//setInterval(updateDate, 86400000);
