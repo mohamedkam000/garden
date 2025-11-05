@@ -111,7 +111,7 @@ function showGrid(){
 }
 
 function showDetails(city) {
-  fetch(`city/${city.id}.html`)
+  fetch(`./city/${city.id}.html`)
     .then(res => res.text())
     .then(html => {
       detailView.innerHTML = html;
