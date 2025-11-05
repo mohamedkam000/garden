@@ -79,7 +79,7 @@ const states = [
             
           }
         ]
-      }
+      },
       {
         id: 'arabi',
         name: 'Al Souq Al Arabi',
@@ -239,7 +239,7 @@ function showGrid() {
   history.replaceState({path:'/'}, '', BASE);
 }
 
-function showMarkets(state) {
+/*function showMarkets(state) {
   detailContent.innerHTML = '';
   detailView.classList.remove('hidden');
   gridView.classList.add('hidden');
@@ -315,9 +315,9 @@ function showGoodDetail(state, market, good) {
 
   const backBtn = detailContent.querySelector('#backBtn');
   backBtn.addEventListener('click', () => showGoods(state, market));
-}
+}*/
 
-/*function showMarkets(state) {
+function showMarkets(state) {
   detailContent.innerHTML = '';
   detailView.classList.remove('hidden');
   gridView.classList.add('hidden');
@@ -443,7 +443,7 @@ function showItemDetail(state, market, good, item) {
   `;
   const backBtn = detailContent.querySelector('#backBtn');
   backBtn.addEventListener('click', () => showItems(state, market, good));
-}*/
+}
 
 renderCards();
 navigateTo(location.pathname,{push:false});
