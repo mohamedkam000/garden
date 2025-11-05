@@ -64,20 +64,19 @@ function renderCards(){
   });
 }
 
-function navigateTo(path, opts={push:true}){
-  if(opts.push) history.pushState({path}, '', path);
-
-/*  if(path==='/' || path==='' || path==='/index.html') showGrid();
-  else if(path.includes('.html') && path.includes('city/')){
-    const id = path.split('/').pop().replace('.html','');
-    const city = cities.find(x => x.id===id) || cities[0];
-    showDetails(city);
+function navigateTo(path, opts={push:true}) {
+  if (opts.push) history.pushState({path}, '', path);
+  if (path === '/' || path === '' || path.endsWith('index.html')) {
+    showGrid();
+    return;
   }
-  else if(path.includes('city/')){
-    const id = path.split('/').pop(); 
-    const city = cities.find(x => x.id === id.replace('.html','')) || cities[0];
+  const cityMatch = path.match(/\/?([a-z]+)\.html$/i);
+  if (cityMatch) {
+    const city = cities.find(c => c.id === cityMatch[1]) || cities[0];
     showDetails(city);
-  }*/
+    return;
+  }
+
   showGrid();
 }
 
