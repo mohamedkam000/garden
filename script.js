@@ -15,7 +15,8 @@ const states = [
             price: '$540',
             img: '...'
           },
-          { id: 'grains',
+          {
+            id: 'grains',
             name: 'Grains',
             price: '$320',
             img: '...'
@@ -25,8 +26,40 @@ const states = [
       {
         id: 'sabreen',
         name: 'Sabreen Market',
+        img: 'https://alnawrs.com/wp-content/uploads/2025/06/%D8%B3%D9%88%D9%82-%D8%B5%D8%A7%D8%A8%D8%B1%D9%8A%D9%86.png',
         goods: [
-          { id: 'livestock', name: 'Livestock', price: '$1020', img: '...' },
+          {
+            id: 'livestock',
+            name: 'Livestock',
+            price: '$1020',
+            img: '...'
+          },
+        ]
+      },
+      {
+        id: 'arabi',
+        name: 'Al Souq Al Arabi',
+        img: 'https://mujaz.alahdath.news/wp-content/uploads/2025/07/%D8%A7%D9%84%D8%B3%D9%88%D9%82-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A-_-%D8%A7%D9%84%D8%AE%D8%B1%D8%B7%D9%88%D9%85--scaled.jpg',
+        goods: [
+          {
+            id: 'livestock',
+            name: 'Livestock',
+            price: '$1020',
+            img: '...'
+          },
+        ]
+      },
+      {
+        id: 'bahri',
+        name: 'Bahri Market',
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs02t35M8vuXehiN0HdQ_AyBlrrUQlxzNXWQ&s',
+        goods: [
+          {
+            id: 'livestock',
+            name: 'Livestock',
+            price: '$1020',
+            img: '...'
+          },
         ]
       }
     ]

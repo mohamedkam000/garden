@@ -270,9 +270,3 @@ main{
   gap: 16px;
   margin-bottom: 20px;
 }
-
-#backBtn {
-  display: block;
-  margin: 0 auto;
-  padding: 10px 20px;
-}
