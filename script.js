@@ -34,7 +34,19 @@ const states = [
               {
                 id: 'apples',
                 name: 'Apples',
-                img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd-FnM96HFu7Qo8Ls-4g4Hv6aZcVwXCAo5wKVdhlxFDSlOQAJdVUvkJmw&s=10'
+                img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd-FnM96HFu7Qo8Ls-4g4Hv6aZcVwXCAo5wKVdhlxFDSlOQAJdVUvkJmw&s=10',
+                quant: [
+                  {
+                    id: 'single',
+                    name: 'Single',
+                    price: '1000 SDG'
+                  },
+                  {
+                    id: 'multiple',
+                    name: 'Multiple',
+                    price: '1000 SDG'
+                  }
+                ]
               },
               {
                 id: 'watermelon',
@@ -315,7 +327,7 @@ function showGoods(state, market) {
 
 function showItems(state, market, good) {
   detailContent.innerHTML = `
-    <h2>${good.name} — Items</h2>
+    <h2>${good.name}</h2>
     <div class="market-grid"></div>
     <button class="btn" id="backBtn">Back</button>
   `;
@@ -346,7 +358,7 @@ function showItems(state, market, good) {
   backBtn.addEventListener('click', () => showGoods(state, market));
 }
 
-function showItemDetail(state, market, good, item) {
+/*function showItemDetail(state, market, good, item) {
   detailContent.innerHTML = `
     <h2>${item.name}</h2>
     <div class="card detail" style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:200px;">
@@ -357,7 +369,7 @@ function showItemDetail(state, market, good, item) {
   `;
   const backBtn = detailContent.querySelector('#backBtn');
   backBtn.addEventListener('click', () => showItems(state, market, good));
-}
+}*/
 
 renderCards();
 navigateTo(location.pathname,{push:false});
