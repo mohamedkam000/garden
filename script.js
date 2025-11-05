@@ -111,8 +111,6 @@ function showDetails(city) {
       gridView.classList.add('hidden');
       detailView.classList.remove('hidden');
       document.title = city.name + ' — Price Tracker';
-
-      // reattach back button listener
       const backBtn = detailContent.querySelector('#backBtn');
       if (backBtn) {
         backBtn.addEventListener('click', () => navigateTo('/', { push:true }));
@@ -132,9 +130,10 @@ function showDetails(city) {
     }, 2000);
     document.body.setAttribute("data-theme", "light");
 
+/*
 document.getElementById('backBtn').addEventListener('click', () => {
   navigateTo('/', {push:true});
-});
+});*/
 
 window.addEventListener('popstate',()=>navigateTo(location.pathname,{push:false}));
 
