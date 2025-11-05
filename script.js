@@ -56,21 +56,17 @@ const states = [
           {
             id: 'grains',
             name: 'Grains',
-            price: '$320',
             img: '...'
           },
           {
             id: 'beverages',
             name: 'Beverages',
-            img: '...',
-            price: '$320'
+            img: '...'
           },
           {
             id: 'meat',
             name: 'Meat',
-            img:
-            img: '...',
-            price: '$320'
+            img: '...'
           },
         ]
       },
@@ -420,13 +416,11 @@ function showGoods(state, market) {
 }
 
 function showItems(state, market, good) {
-  detailContent.innerHTML = '';
   detailContent.innerHTML = `
     <h2>${good.name} — Items</h2>
     <div class="market-grid"></div>
     <button class="btn" id="backBtn">Back</button>
   `;
-
   const itemsGrid = detailContent.querySelector('.market-grid');
 
   good.items.forEach(item => {
@@ -434,13 +428,12 @@ function showItems(state, market, good) {
     el.className = 'card';
     el.innerHTML = `
       <div class="title-band" style="justify-content:center;align-items:center;height:150px;">
-        <div style="text-align:center;font-size:1.5em;font-weight:bold">${item.name}</div>
+        <div style="text-align:center;font-size:1.6em;font-weight:bold">${item.name}</div>
       </div>
-      <div class="meta">
-        <div class="desc">Price: ${item.price || '$0'}</div>
+      <div class="meta" style="text-align:center;">
+        <div class="price">Price: ${item.price || '$0'}</div>
       </div>
     `;
-
     const tag = document.createElement('div');
     tag.className = 'tag';
     tag.textContent = 'Item';
@@ -455,16 +448,14 @@ function showItems(state, market, good) {
 }
 
 function showItemDetail(state, market, good, item) {
-  detailContent.innerHTML = '';
   detailContent.innerHTML = `
     <h2>${item.name}</h2>
-    <div class="card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:200px;">
+    <div class="card detail" style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:200px;">
       <div style="font-size:2em;font-weight:bold">${item.name}</div>
-      <div style="margin-top:10px;font-size:1.2em;color:#555">${item.price || '$0'}</div>
+      <div style="margin-top:10px;font-size:1.3em;color:var(--accent)">${item.price || '$0'}</div>
     </div>
     <button class="btn" id="backBtn">Back</button>
   `;
-
   const backBtn = detailContent.querySelector('#backBtn');
   backBtn.addEventListener('click', () => showItems(state, market, good));
 }
