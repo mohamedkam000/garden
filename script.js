@@ -230,84 +230,6 @@ function showGrid() {
   history.replaceState({path:'/'}, '', BASE);
 }
 
-/*function showMarkets(state) {
-  detailContent.innerHTML = '';
-  detailView.classList.remove('hidden');
-  gridView.classList.add('hidden');
-
-  detailContent.innerHTML = `
-    <h2>${state.name} Markets</h2>
-    <div class="market-grid"></div>
-    <button class="btn" id="backBtn">Back</button>
-  `;
-
-  const marketGrid = detailContent.querySelector('.market-grid');
-
-  state.markets.forEach(market => {
-    const el = document.createElement('article');
-    el.className = 'card';
-    el.innerHTML = `
-      <div class="img" style="background-image:url('${market.img}')"></div>
-      <div class="title-band">
-        <div style="display:flex;flex-direction:column">
-          <div class="city">${market.name}</div>
-          <div class="desc">Select market to explore goods</div>
-        </div>
-      </div>
-      <div class="meta">
-        <div class="desc">Click to see goods in this market</div>
-      </div>
-    `;
-    const tag = document.createElement('div');
-    tag.className = 'tag';
-    tag.textContent = 'Market';
-    el.appendChild(tag);
-    el.addEventListener('click', () => showGoods(state, market));
-    marketGrid.appendChild(el);
-  });
-
-  const backBtn = detailContent.querySelector('#backBtn');
-  backBtn.addEventListener('click', () => showGrid());
-}
-
-function showGoods(state, market) {
-  detailContent.innerHTML = '';
-  detailContent.innerHTML = `
-    <h2>${market.name} — Goods</h2>
-    <div class="goods-grid"></div>
-    <button class="btn" id="backBtn">Back</button>
-  `;
-
-  const goodsGrid = detailContent.querySelector('.goods-grid');
-
-  market.goods.forEach(good => {
-    const el = document.createElement('div');
-    el.className = 'good-card';
-    el.innerHTML = `<div>${good.name} — ${good.price}</div>`;
-    el.addEventListener('click', () => showGoodDetail(state, market, good));
-    goodsGrid.appendChild(el);
-  });
-
-  const backBtn = detailContent.querySelector('#backBtn');
-  backBtn.addEventListener('click', () => showMarkets(state));
-}
-
-function showGoodDetail(state, market, good) {
-  detailContent.innerHTML = '';
-  detailContent.innerHTML = `
-    <h2>${good.name}</h2>
-    <p>${good.description || 'No details available.'}</p>
-    <ul>
-      ${good.stats ? Object.entries(good.stats).map(([k,v]) =>
-        `<li><strong>${k}:</strong> ${Array.isArray(v)?v.join(', '):v}</li>`).join('') : ''}
-    </ul>
-    <button class="btn" id="backBtn">Back</button>
-  `;
-
-  const backBtn = detailContent.querySelector('#backBtn');
-  backBtn.addEventListener('click', () => showGoods(state, market));
-}*/
-
 function showMarkets(state) {
   detailContent.innerHTML = '';
   detailView.classList.remove('hidden');
@@ -399,7 +321,7 @@ function showItems(state, market, good) {
   `;
   const itemsGrid = detailContent.querySelector('.market-grid');
 
-  good.items.forEach(item => {
+/*  good.items.forEach(item => {
     const el = document.createElement('article');
     el.className = 'card';
     el.innerHTML = `
@@ -417,7 +339,20 @@ function showItems(state, market, good) {
 
     el.addEventListener('click', () => showItemDetail(state, market, good, item));
     itemsGrid.appendChild(el);
-  });
+  });*/
+  
+  good.items.forEach(item => {
+    const el = document.createElement('article');
+    el.className = 'card';
+    el.innerHTML = `
+    <div class="img" style="background-image:url('${item.img || ''}')"></div>
+    <div class="title-band" style="justify-content:center;align-items:center;height:50px;">
+      <div style="text-align:center;font-size:1.2em;font-weight:bold">${item.name}</div>
+    </div>
+    <div class="meta" style="text-align:center;">
+      <div class="price">Price: ${item.price || '$0'}</div>
+    </div>
+    `;
 
   const backBtn = detailContent.querySelector('#backBtn');
   backBtn.addEventListener('click', () => showGoods(state, market));
@@ -532,4 +467,3 @@ function updateDate() {
 }
 
 updateDate();
-//setInterval(updateDate, 86400000);
