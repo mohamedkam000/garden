@@ -71,16 +71,27 @@ function setAccent(hex){
       });
     }
 
-    function navigateTo(path, opts={push:true}){
+function navigateTo(path, opts={push:true}){
+  if(opts.push) history.pushState({path}, '', path);
+
+  if(path==='/' || path==='' || path==='/index.html') showGrid();
+  else if(path.includes('city/')){
+    const id = path.split('/').pop(); 
+    const city = cities.find(x => x.id === id.replace('.html','')) || cities[0];
+    showDetails(city);
+  } else showGrid();
+}
+
+/*    function navigateTo(path, opts={push:true}){
       if(opts.push) history.pushState({path}, '', path);
       if(path==='/'||path===''||path==='/index.html') showGrid();
-/*      else if(path==='/page.html/') showAltGrid();*/
+      else if(path==='/page.html/') showAltGrid();
       else if(path.startsWith('city/')){
         const id=path.split('city/')[1];
         const city=cities.find(x=>x.id===id)||cities[0];
         showDetails(city);
       } else showGrid();
-    }
+    }*/
 
 /*function renderAltCards(){
   cardsGrid.innerHTML = '';
@@ -125,7 +136,7 @@ function showGrid(){
     });
 }*/
 
-function showDetails(city) {
+/*function showDetails(city) {
   fetch(`city/${city.id}.html`)
     .then(res => res.text())
     .then(html => {
@@ -139,13 +150,29 @@ function showDetails(city) {
       gridView.classList.add('hidden');
       detailView.classList.remove('hidden');
     });
-}
+}*/
 
 /*    function showDetails(city){
       gridView.classList.add('hidden');detailView.classList.remove('hidden');
       detailContent.innerHTML = `<h2>${city.name}</h2><p class="desc">Tracking average market prices for ${city.name}.</p><div style="height:240px;background-image:url('${city.img}');background-size:cover;border-radius:12px;margin-top:12px"></div><div style="margin-top:12px;display:flex;gap:12px;align-items:center"><div class="price">Current: ${city.price}</div><button class="btn" onclick=\"alert('testing pop-up dialogues ${city.name}')\">Track</button></div>`;
       document.title = city.name+' — Price Tracker';
     }*/
+
+function showDetails(city) {
+  fetch(`${city.id}.html`)           // <-- only the filename, no folder path if in same folder
+    .then(res => res.text())
+    .then(html => {
+      detailContent.innerHTML = html;   // replace content, not the wrapper
+      gridView.classList.add('hidden'); // hide grid
+      detailView.classList.remove('hidden'); // show detail wrapper
+      document.title = city.name + ' — Price Tracker';
+    })
+    .catch(() => {
+      detailContent.innerHTML = `<h2>${city.name}</h2><p>No custom page found.</p>`;
+      gridView.classList.add('hidden');
+      detailView.classList.remove('hidden');
+    });
+}
 
     setInterval(() => {
       document.querySelectorAll('.letter').forEach((span, i) => {
@@ -159,6 +186,14 @@ function showDetails(city) {
 
 renderCards();
 navigateTo(location.pathname,{push:false});
+
+
+
+
+
+
+
+
 
 
 
