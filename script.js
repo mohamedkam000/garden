@@ -1,11 +1,11 @@
     const cities = [
-      {id:'cairo',name:'Khartoum',img:'https://images.unsplash.com/photo-1659864216522-494efbd76895?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8a2hhcnRvdW18ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=1200',price:'$1,200'},
-      {id:'lagos',name:'Al-Jazeera',img:'https://www.alnilin.com/wp-content/uploads/2023/09/madani_kush-780x470.jpg',price:'$940'},
-      {id:'nairobi',name:'River Nile',img:'https://www.sudanakhbar.com/wp-content/uploads/2024/10/445.jpg',price:'$780'},
-      {id:'riyadh',name:'Northern Sudan',img:'https://sudanjournal.com/wp-content/uploads/2021/01/a1bd13c5fc813f0c17a64c8d52265180.jpg',price:'$1,050'},
-      {id:'istanbul',name:'Red Sea',img:'https://i0.wp.com/arabscountries.com/wp-content/uploads/2022/11/The-Red-Sea-1.jpg',price:'$1,430'},
-      {id:'madrid',name:'Kassala',img:'https://saqraljidyanews.com/wp-content/uploads/2020/08/d6e7a4bc43ae7ef56f2bcf0bb6571f6e.jpg',price:'$1,120'},
-      {id:'johannesburg',name:'Sinnar',img:'https://kushnews.net/wp-content/uploads/2023/09/sinnar_kush.jpg',price:''}
+      {id:'khartoum',name:'Khartoum',img:'https://images.unsplash.com/photo-1659864216522-494efbd76895?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8a2hhcnRvdW18ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=1200',price:'$1,200'},
+      {id:'jazeera',name:'Al-Jazeera',img:'https://www.alnilin.com/wp-content/uploads/2023/09/madani_kush-780x470.jpg',price:'$940'},
+      {id:'rivernile',name:'River Nile',img:'https://www.sudanakhbar.com/wp-content/uploads/2024/10/445.jpg',price:'$780'},
+      {id:'nsudan',name:'Northern Sudan',img:'https://sudanjournal.com/wp-content/uploads/2021/01/a1bd13c5fc813f0c17a64c8d52265180.jpg',price:'$1,050'},
+      {id:'rsea',name:'Red Sea',img:'https://i0.wp.com/arabscountries.com/wp-content/uploads/2022/11/The-Red-Sea-1.jpg',price:'$1,430'},
+      {id:'kassala',name:'Kassala',img:'https://saqraljidyanews.com/wp-content/uploads/2020/08/d6e7a4bc43ae7ef56f2bcf0bb6571f6e.jpg',price:'$1,120'},
+      {id:'sinnar',name:'Sinnar',img:'https://kushnews.net/wp-content/uploads/2023/09/sinnar_kush.jpg',price:''}
     ];
 
 /*const altCities = [
