@@ -67,7 +67,7 @@ function renderCards(){
 function navigateTo(path, opts={push:true}){
   if(opts.push) history.pushState({path}, '', path);
 
-  if(path==='/' || path==='' || path==='/index.html') showGrid();
+/*  if(path==='/' || path==='' || path==='/index.html') showGrid();
   else if(path.includes('.html') && path.includes('city/')){
     const id = path.split('/').pop().replace('.html','');
     const city = cities.find(x => x.id===id) || cities[0];
@@ -77,7 +77,8 @@ function navigateTo(path, opts={push:true}){
     const id = path.split('/').pop(); 
     const city = cities.find(x => x.id === id.replace('.html','')) || cities[0];
     showDetails(city);
-  } else showGrid();
+  }*/
+  showGrid();
 }
 
 function showGrid(){
