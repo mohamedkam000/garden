@@ -87,6 +87,22 @@ function showGrid(){
   document.title='Sooq Price';
 }
 
+/*function showDetails(city) {
+  fetch(`${city.id}.html`)
+    .then(res => res.text())
+    .then(html => {
+      detailContent.innerHTML = html;  
+      gridView.classList.add('hidden');
+      detailView.classList.remove('hidden');
+      document.title = city.name + ' — Price Tracker';
+    })
+    .catch(() => {
+      detailContent.innerHTML = `<h2>${city.name}</h2><p>No custom page found.</p>`;
+      gridView.classList.add('hidden');
+      detailView.classList.remove('hidden');
+    });
+}*/
+
 function showDetails(city) {
   fetch(`${city.id}.html`)
     .then(res => res.text())
@@ -95,6 +111,12 @@ function showDetails(city) {
       gridView.classList.add('hidden');
       detailView.classList.remove('hidden');
       document.title = city.name + ' — Price Tracker';
+
+      // reattach back button listener
+      const backBtn = detailContent.querySelector('#backBtn');
+      if (backBtn) {
+        backBtn.addEventListener('click', () => navigateTo('/', { push:true }));
+      }
     })
     .catch(() => {
       detailContent.innerHTML = `<h2>${city.name}</h2><p>No custom page found.</p>`;
@@ -113,6 +135,7 @@ function showDetails(city) {
 document.getElementById('backBtn').addEventListener('click', () => {
   navigateTo('/', {push:true});
 });
+
 window.addEventListener('popstate',()=>navigateTo(location.pathname,{push:false}));
 
 renderCards();
