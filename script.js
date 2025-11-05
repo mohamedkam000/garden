@@ -146,7 +146,7 @@ function showGrid() {
   history.replaceState({path:'/'}, '', BASE);
 }
 
-/*function showDetails(city) {
+function showDetails(city) {
   fetch(`${city.id}.html`)
     .then(res => res.text())
     .then(html => {
@@ -164,7 +164,7 @@ function showGrid() {
       gridView.classList.add('hidden');
       detailView.classList.remove('hidden');
     });
-}*/
+}
 
 function showMarkets(state) {
   detailContent.innerHTML = '';
