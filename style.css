@@ -259,3 +259,20 @@ main{
   75% { color: #8b5cf6; }
   100% { color: var(--accent); }
 }
+
+#detailContent {
+  padding: 16px;
+}
+
+.market-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+#backBtn {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+}
