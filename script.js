@@ -114,7 +114,7 @@ function showDetails(city) {
   fetch(`city/${city.id}.html`)
     .then(res => res.text())
     .then(html => {
-      detailView.innerHTML = html;
+      detailContent.innerHTML = html;
       gridView.classList.add('hidden');
       detailView.classList.remove('hidden');
       document.title = city.name + ' — Price Tracker';
@@ -140,30 +140,27 @@ function showDetails(city) {
     document.getElementById('backBtn').addEventListener('click',()=>navigateTo('/',{push:true}));
     window.addEventListener('popstate',()=>navigateTo(location.pathname,{push:false}));
 
-    renderCards();
-    navigateTo(location.pathname,{push:false});
+renderCards();
+navigateTo(location.pathname,{push:false});
 
-    const titleText = 'Sooq Price';
-    const titleColored = document.getElementById('titleColored');
-    titleText.split('').forEach((ch,i)=>{
-      const span = document.createElement('span');
-      span.className='letter';
-      span.style.color = accents[i % accents.length];
-      span.textContent = ch;
-      titleColored.appendChild(span);
-    });
+/*
+ * This makes the title colours dance. Don't touch it.
+ */
+const titleText = 'Sooq Price';
+const titleColored = document.getElementById('titleColored');
 
-
-
-
-
-
+titleText.split('').forEach((ch,i)=>{
+  const span = document.createElement('span');
+  span.className='letter';
+  span.style.color = accents[i % accents.length];
+  span.textContent = ch;
+  titleColored.appendChild(span);
+});
 
 /*
  * This is the footer. Don't worry about it and go fix something else.
  * Seriously, stay away.
  */
-
 const fooText = 'Muhammad Kamal';
 const fooColored = document.getElementById('footer');
 fooText.split('').forEach((ch,i)=>{
