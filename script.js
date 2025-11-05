@@ -89,30 +89,33 @@ const gridView = document.getElementById('gridView');
 const detailView = document.getElementById('detailView');
 const detailContent = document.getElementById('detailContent');
 
-function renderCards(){
+function renderCards() {
   cardsGrid.innerHTML = '';
-  cities.forEach(c => {
+  states.forEach(state => {
     const el = document.createElement('article');
     el.className = 'card';
     el.tabIndex = 0;
     el.innerHTML = `
-    <div class="img" style="background-image:url('${c.img}')"></div>
-    <div class="title-band">
-    <div style="display:flex;flex-direction:column">
-    <div class="city">${c.name}</div>
-    <div class="desc">Select city to track average prices</div>
-    </div>
-    <div class="price">${c.price}</div>
-    </div>
-    <div class="meta">
-    <div class="desc">Sample overview • updated recently</div>
-    </div>`;
+      <div class="img" style="background-image:url('${state.img}')"></div>
+      <div class="title-band">
+        <div style="display:flex;flex-direction:column">
+          <div class="city">${state.name}</div>
+          <div class="desc">Select state to explore its markets</div>
+        </div>
+      </div>
+      <div class="meta">
+        <div class="desc">Click to see markets inside this state</div>
+      </div>
+    `;
     const tag = document.createElement('div');
     tag.className = 'tag';
     tag.textContent = 'Alpha';
     el.appendChild(tag);
-    el.addEventListener('click', ()=>showDetails(c));
-    el.addEventListener('keypress', (e)=>{ if(e.key==='Enter') showDetails(c); });
+
+    // Clicking a state shows its markets
+    el.addEventListener('click', () => showMarkets(state));
+    el.addEventListener('keypress', (e) => { if(e.key === 'Enter') showMarkets(state); });
+
     cardsGrid.appendChild(el);
   });
 }
@@ -146,7 +149,7 @@ function showGrid() {
   history.replaceState({path:'/'}, '', BASE);
 }
 
-function showDetails(city) {
+/*function showDetails(city) {
   fetch(`${city.id}.html`)
     .then(res => res.text())
     .then(html => {
@@ -164,7 +167,7 @@ function showDetails(city) {
       gridView.classList.add('hidden');
       detailView.classList.remove('hidden');
     });
-}
+}*/
 
 function showMarkets(state) {
   detailContent.innerHTML = '';
