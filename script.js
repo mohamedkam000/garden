@@ -8,12 +8,6 @@
       {id:'sinnar',name:'Sinnar',img:'https://kushnews.net/wp-content/uploads/2023/09/sinnar_kush.jpg',price:''}
     ];
 
-/*const altCities = [
-  {id:'prt',name:'Port Sudan',img:'https://www.midad.com/storage/posts/June2022/R5XQELzA1K3e5jHCZtx9.jpg',price:'$980'},
-  {id:'atb',name:'Atbara',img:'https://upload.wikimedia.org/wikipedia/commons/3/39/Atbara_River_Sudan.jpg',price:'$860'},
-  {id:'don',name:'Dongola',img:'https://sudanile.com/wp-content/uploads/2022/07/Dongola-1.jpg',price:'$1,030'}
-];*/
-
     const accents = [
   '#06b6d4','#6366f1','#ef4444','#f59e0b','#10b981','#8b5cf6','#ec4899','#f97316',
   '#22c55e','#0ea5e9','#ef5350','#a78bfa','#fb7185','#60a5fa','#34d399','#f43f5e',
@@ -42,34 +36,33 @@ function setAccent(hex){
 
     document.getElementById('titleColored').addEventListener('click', ()=>setAccent(randomAccent()));
 
-    function renderCards(){
-      cardsGrid.innerHTML = '';
-      cities.forEach(c => {
-        const el = document.createElement('article');
-        el.className = 'card';
-        el.tabIndex = 0;
-        el.innerHTML = `
-          <div class="img" style="background-image:url('${c.img}')"></div>
-          <div class="title-band">
-            <div style="display:flex;flex-direction:column">
-              <div class="city">${c.name}</div>
-              <div class="desc">Select city to track average prices</div>
-            </div>
-            <div class="price">${c.price}</div>
-          </div>
-          <div class="meta">
-            <div class="desc">Sample overview • updated recently</div>
-          </div>`;
-        const tag = document.createElement('div');
-        tag.className = 'tag';
-        tag.textContent = 'Alpha';
-        el.appendChild(tag);
-        el.addEventListener('click', ()=>showDetails(c));
-        el.addEventListener('keypress', (e)=>{ if(e.key==='Enter') showDetails(c); });
-//        el.addEventListener('keypress', (e)=>{ if(e.key==='Enter') navigateTo('city/'+c.id); });
-        cardsGrid.appendChild(el);
-      });
-    }
+function renderCards(){
+  cardsGrid.innerHTML = '';
+  cities.forEach(c => {
+    const el = document.createElement('article');
+    el.className = 'card';
+    el.tabIndex = 0;
+    el.innerHTML = `
+    <div class="img" style="background-image:url('${c.img}')"></div>
+    <div class="title-band">
+    <div style="display:flex;flex-direction:column">
+    <div class="city">${c.name}</div>
+    <div class="desc">Select city to track average prices</div>
+    </div>
+    <div class="price">${c.price}</div>
+    </div>
+    <div class="meta">
+    <div class="desc">Sample overview • updated recently</div>
+    </div>`;
+    const tag = document.createElement('div');
+    tag.className = 'tag';
+    tag.textContent = 'Alpha';
+    el.appendChild(tag);
+    el.addEventListener('click', ()=>showDetails(c));
+    el.addEventListener('keypress', (e)=>{ if(e.key==='Enter') showDetails(c); });
+    cardsGrid.appendChild(el);
+  });
+}
 
 function navigateTo(path, opts={push:true}){
   if(opts.push) history.pushState({path}, '', path);
@@ -87,89 +80,20 @@ function navigateTo(path, opts={push:true}){
   } else showGrid();
 }
 
-/*    function navigateTo(path, opts={push:true}){
-      if(opts.push) history.pushState({path}, '', path);
-      if(path==='/'||path===''||path==='/index.html') showGrid();
-      else if(path==='/page.html/') showAltGrid();
-      else if(path.startsWith('city/')){
-        const id=path.split('city/')[1];
-        const city=cities.find(x=>x.id===id)||cities[0];
-        showDetails(city);
-      } else showGrid();
-    }*/
-
-/*function renderAltCards(){
-  cardsGrid.innerHTML = '';
-  altCities.forEach(c => {
-    const el = document.createElement('article');
-    el.className = 'card';
-    el.innerHTML = `
-      <div class="img" style="background-image:url('${c.img}')"></div>
-      <div class="title-band">
-        <div class="city">${c.name}</div>
-        <div class="price">${c.price}</div>
-      </div>`;
-    el.addEventListener('click', ()=>alert('Clicked: '+c.name));
-    cardsGrid.appendChild(el);
-  });
-}
-
-function showAltGrid(){
-  detailView.classList.add('hidden');
-  gridView.classList.remove('hidden');
-  document.title = 'Sooq Price — Extra';
-  renderAltCards();
-}*/
-
 function showGrid(){
   detailView.classList.add('hidden');
   gridView.classList.remove('hidden');
+  renderCards();
   document.title='Sooq Price';
 }
 
-/*function showDetails(city) {
-  fetch(`city/${city.id}.html`)
-    .then(res => res.text())
-    .then(html => {
-      detailContent.innerHTML = html;
-      gridView.classList.add('hidden');
-      detailView.classList.remove('hidden');
-      document.title = city.name + ' — Price Tracker';
-    })
-    .catch(() => {
-      detailView.innerHTML = `<h2>${city.name}</h2><p>No custom page found.</p>`;
-    });
-}*/
-
-/*function showDetails(city) {
-  fetch(`city/${city.id}.html`)
-    .then(res => res.text())
-    .then(html => {
-      detailContent.innerHTML = html;     
-      gridView.classList.add('hidden');
-      detailView.classList.remove('hidden');
-      document.title = city.name + ' — Price Tracker';
-    })
-    .catch(() => {
-      detailContent.innerHTML = `<h2>${city.name}</h2><p>No custom page found.</p>`;
-      gridView.classList.add('hidden');
-      detailView.classList.remove('hidden');
-    });
-}*/
-
-/*    function showDetails(city){
-      gridView.classList.add('hidden');detailView.classList.remove('hidden');
-      detailContent.innerHTML = `<h2>${city.name}</h2><p class="desc">Tracking average market prices for ${city.name}.</p><div style="height:240px;background-image:url('${city.img}');background-size:cover;border-radius:12px;margin-top:12px"></div><div style="margin-top:12px;display:flex;gap:12px;align-items:center"><div class="price">Current: ${city.price}</div><button class="btn" onclick=\"alert('testing pop-up dialogues ${city.name}')\">Track</button></div>`;
-      document.title = city.name+' — Price Tracker';
-    }*/
-
 function showDetails(city) {
-  fetch(`${city.id}.html`)           // <-- only the filename, no folder path if in same folder
+  fetch(`${city.id}.html`)
     .then(res => res.text())
     .then(html => {
-      detailContent.innerHTML = html;   // replace content, not the wrapper
-      gridView.classList.add('hidden'); // hide grid
-      detailView.classList.remove('hidden'); // show detail wrapper
+      detailContent.innerHTML = html;  
+      gridView.classList.add('hidden');
+      detailView.classList.remove('hidden');
       document.title = city.name + ' — Price Tracker';
     })
     .catch(() => {
@@ -186,8 +110,10 @@ function showDetails(city) {
     }, 2000);
     document.body.setAttribute("data-theme", "light");
 
-    document.getElementById('backBtn').addEventListener('click',()=>navigateTo('/',{push:true}));
-    window.addEventListener('popstate',()=>navigateTo(location.pathname,{push:false}));
+document.getElementById('backBtn').addEventListener('click', () => {
+  navigateTo('/', {push:true});
+});
+window.addEventListener('popstate',()=>navigateTo(location.pathname,{push:false}));
 
 renderCards();
 navigateTo(location.pathname,{push:false});
