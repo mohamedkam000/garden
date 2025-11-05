@@ -321,12 +321,13 @@ function showItems(state, market, good) {
   `;
   const itemsGrid = detailContent.querySelector('.market-grid');
 
-/*  good.items.forEach(item => {
+  good.items.forEach(item => {
     const el = document.createElement('article');
     el.className = 'card';
     el.innerHTML = `
-      <div class="title-band" style="justify-content:center;align-items:center;height:150px;">
-        <div style="text-align:center;font-size:1.6em;font-weight:bold">${item.name}</div>
+      <div class="img" style="background-image:url('${item.img || ''}')"></div>
+      <div class="title-band" style="display:flex;flex-direction:column;align-items:center;">
+        <div class="city" style="font-size:1.2em;font-weight:bold">${item.name}</div>
       </div>
       <div class="meta" style="text-align:center;">
         <div class="price">Price: ${item.price || '$0'}</div>
@@ -339,20 +340,7 @@ function showItems(state, market, good) {
 
     el.addEventListener('click', () => showItemDetail(state, market, good, item));
     itemsGrid.appendChild(el);
-  });*/
-  
-  good.items.forEach(item => {
-    const el = document.createElement('article');
-    el.className = 'card';
-    el.innerHTML = `
-    <div class="img" style="background-image:url('${item.img || ''}')"></div>
-    <div class="title-band" style="justify-content:center;align-items:center;height:50px;">
-      <div style="text-align:center;font-size:1.2em;font-weight:bold">${item.name}</div>
-    </div>
-    <div class="meta" style="text-align:center;">
-      <div class="price">Price: ${item.price || '$0'}</div>
-    </div>
-    `;
+  });
 
   const backBtn = detailContent.querySelector('#backBtn');
   backBtn.addEventListener('click', () => showGoods(state, market));
