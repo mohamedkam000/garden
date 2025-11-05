@@ -260,7 +260,7 @@ main{
   100% { color: var(--accent); }
 }
 
-#detailContent {
+/*#detailContent {
   padding: 16px;
 }
 
@@ -269,4 +269,4 @@ main{
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 16px;
   margin-bottom: 20px;
-}
+}*/
