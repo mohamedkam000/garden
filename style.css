@@ -212,7 +212,7 @@ main{
   } footer{
     text-align:center;
     position:relative;
-    margin-top:0px;
+    margin-top:8px;
     font-size:14px;
     font-weight: 700;
     color:var(--muted)

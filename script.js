@@ -12,14 +12,65 @@ const states = [
           {
             id: 'vegetables',
             name: 'Vegetables',
-            price: '$540',
-            img: '...'
+            img: 'https://sudafax.com/wp-content/uploads/2018/10/%D8%AE%D8%B6%D8%A7%D8%B1.jpg',
+            items: [
+              {
+                id: 'tomatoes',
+                name: 'Tomatoes',
+                img: 'https://media.istockphoto.com/id/1419141035/photo/cut-red-tomato-close-up-in-a-box.jpg?s=612x612&w=0&k=20&c=eROI2zV4l1ozwwhdcdxgfqiKfynOZ-lAyv0FDUKyGl0='
+              },
+              {
+                id: 'carrots',
+                name: 'Carrots',
+                img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpLDKq28AEJ0xY4yeCJJ3Zcb55CFd9Wb1hCwD2nxdd4Zr-AXFPxl6L0Tg&s=10'
+              }
+            ]
+          },
+          {
+            id: 'fruits',
+            name: 'Fruits',
+            img: 'https://arabic.news.cn/2022-05/01/1310581082_16513444999741n.jpg',
+            items: [
+              {
+                id: 'apples',
+                name: 'Apples',
+                img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd-FnM96HFu7Qo8Ls-4g4Hv6aZcVwXCAo5wKVdhlxFDSlOQAJdVUvkJmw&s=10'
+              },
+              {
+                id: 'watermelon',
+                name: 'Watermelon',
+                img: 'https://bagelsandlasagna.com/wp-content/uploads/2024/05/ripe-watermelon-AdobeStock-low-res-1024x575.jpeg'
+              },
+              {
+                id: 'oranges',
+                name: 'Oranges',
+                img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiYWJja7ljHmJKufcD2q7NcOunbKZv5Mglj67WpYJ7zSMaHKvfm6Bx2Us&s=10'
+              },
+              {
+                id: 'bananas',
+                name: 'Bananas',
+                img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGoUt8-4dpt_fd_q_GoEpYpEBX__QlGiYm7YjniW4O699DEt59NttcEs7G&s=10'
+              }
+            ]
           },
           {
             id: 'grains',
             name: 'Grains',
             price: '$320',
             img: '...'
+          },
+          {
+            id: 'beverages',
+            name: 'Beverages',
+            img: '...',
+            price: '$320'
+          },
+          {
+            id: 'meat',
+            name: 'Meat',
+            img:
+            img: '...',
+            price: '$320'
           },
         ]
       },
@@ -29,9 +80,9 @@ const states = [
         img: 'https://alnawrs.com/wp-content/uploads/2025/06/%D8%B3%D9%88%D9%82-%D8%B5%D8%A7%D8%A8%D8%B1%D9%8A%D9%86.png',
         goods: [
           {
-            id: 'livestock',
-            name: 'Livestock',
-            price: '$1020',
+            id: 'N',
+            name: 'N',
+            price: '$0',
             img: '...'
           },
         ]
@@ -42,9 +93,9 @@ const states = [
         img: 'https://mujaz.alahdath.news/wp-content/uploads/2025/07/%D8%A7%D9%84%D8%B3%D9%88%D9%82-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A-_-%D8%A7%D9%84%D8%AE%D8%B1%D8%B7%D9%88%D9%85--scaled.jpg',
         goods: [
           {
-            id: 'livestock',
-            name: 'Livestock',
-            price: '$1020',
+            id: 'N',
+            name: 'N',
+            price: '$0',
             img: '...'
           },
         ]
@@ -55,9 +106,22 @@ const states = [
         img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs02t35M8vuXehiN0HdQ_AyBlrrUQlxzNXWQ&s',
         goods: [
           {
-            id: 'livestock',
-            name: 'Livestock',
-            price: '$1020',
+            id: 'N',
+            name: 'N',
+            price: '$0',
+            img: '...'
+          },
+        ]
+      },
+      {
+        id: 'local',
+        name: 'Local Market',
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs02t35M8vuXehiN0HdQ_AyBlrrUQlxzNXWQ&s',
+        goods: [
+          {
+            id: 'N',
+            name: 'N',
+            price: '$0',
             img: '...'
           },
         ]
@@ -194,7 +258,7 @@ function showGrid() {
   history.replaceState({path:'/'}, '', BASE);
 }
 
-function showMarkets(state) {
+/*function showMarkets(state) {
   detailContent.innerHTML = '';
   detailView.classList.remove('hidden');
   gridView.classList.add('hidden');
@@ -254,9 +318,9 @@ function showGoods(state, market) {
 
   const backBtn = detailContent.querySelector('#backBtn');
   backBtn.addEventListener('click', () => showMarkets(state));
-}
+}*/
 
-function showGoodDetail(state, market, good) {
+/*function showGoodDetail(state, market, good) {
   detailContent.innerHTML = '';
   detailContent.innerHTML = `
     <h2>${good.name}</h2>
@@ -270,17 +334,143 @@ function showGoodDetail(state, market, good) {
 
   const backBtn = detailContent.querySelector('#backBtn');
   backBtn.addEventListener('click', () => showGoods(state, market));
+}*/
+
+function showMarkets(state) {
+  detailContent.innerHTML = '';
+  detailView.classList.remove('hidden');
+  gridView.classList.add('hidden');
+
+  detailContent.innerHTML = `
+    <h2>${state.name} Markets</h2>
+    <div class="market-grid"></div>
+    <button class="btn" id="backBtn">Back</button>
+  `;
+
+  const marketGrid = detailContent.querySelector('.market-grid');
+
+  state.markets.forEach(market => {
+    const el = document.createElement('article');
+    el.className = 'card';
+    el.innerHTML = `
+      <div class="img" style="background-image:url('${market.img}')"></div>
+      <div class="title-band">
+        <div style="display:flex;flex-direction:column">
+          <div class="city">${market.name}</div>
+          <div class="desc">Select market to explore goods</div>
+        </div>
+      </div>
+      <div class="meta">
+        <div class="desc">Click to see goods in this market</div>
+      </div>
+    `;
+    const tag = document.createElement('div');
+    tag.className = 'tag';
+    tag.textContent = 'Market';
+    el.appendChild(tag);
+    el.addEventListener('click', () => showGoods(state, market));
+    marketGrid.appendChild(el);
+  });
+
+  const backBtn = detailContent.querySelector('#backBtn');
+  backBtn.addEventListener('click', () => showGrid());
+}
+
+function showGoods(state, market) {
+  detailContent.innerHTML = '';
+  detailContent.innerHTML = `
+    <h2>${market.name} — Goods</h2>
+    <div class="market-grid"></div>
+    <button class="btn" id="backBtn">Back</button>
+  `;
+
+  const goodsGrid = detailContent.querySelector('.market-grid');
+
+  market.goods.forEach(good => {
+    const el = document.createElement('article');
+    el.className = 'card';
+    el.innerHTML = `
+      <div class="img" style="background-image:url('${good.img || ''}')"></div>
+      <div class="title-band">
+        <div style="display:flex;flex-direction:column">
+          <div class="city">${good.name}</div>
+          <div class="desc">Click to see items inside</div>
+        </div>
+      </div>
+      <div class="meta">
+        <div class="desc">${good.items ? good.items.length + ' items available' : 'No items'}</div>
+      </div>
+    `;
+    const tag = document.createElement('div');
+    tag.className = 'tag';
+    tag.textContent = 'Good';
+    el.appendChild(tag);
+
+    if (good.items && good.items.length > 0) {
+      el.addEventListener('click', () => showItems(state, market, good));
+    } else {
+      el.addEventListener('click', () => alert('No items inside'));
+    }
+
+    goodsGrid.appendChild(el);
+  });
+
+  const backBtn = detailContent.querySelector('#backBtn');
+  backBtn.addEventListener('click', () => showMarkets(state));
+}
+
+function showItems(state, market, good) {
+  detailContent.innerHTML = '';
+  detailContent.innerHTML = `
+    <h2>${good.name} — Items</h2>
+    <div class="market-grid"></div>
+    <button class="btn" id="backBtn">Back</button>
+  `;
+
+  const itemsGrid = detailContent.querySelector('.market-grid');
+
+  good.items.forEach(item => {
+    const el = document.createElement('article');
+    el.className = 'card';
+    el.innerHTML = `
+      <div class="title-band" style="justify-content:center;align-items:center;height:150px;">
+        <div style="text-align:center;font-size:1.5em;font-weight:bold">${item.name}</div>
+      </div>
+      <div class="meta">
+        <div class="desc">Price: ${item.price || '$0'}</div>
+      </div>
+    `;
+
+    const tag = document.createElement('div');
+    tag.className = 'tag';
+    tag.textContent = 'Item';
+    el.appendChild(tag);
+
+    el.addEventListener('click', () => showItemDetail(state, market, good, item));
+    itemsGrid.appendChild(el);
+  });
+
+  const backBtn = detailContent.querySelector('#backBtn');
+  backBtn.addEventListener('click', () => showGoods(state, market));
+}
+
+function showItemDetail(state, market, good, item) {
+  detailContent.innerHTML = '';
+  detailContent.innerHTML = `
+    <h2>${item.name}</h2>
+    <div class="card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:200px;">
+      <div style="font-size:2em;font-weight:bold">${item.name}</div>
+      <div style="margin-top:10px;font-size:1.2em;color:#555">${item.price || '$0'}</div>
+    </div>
+    <button class="btn" id="backBtn">Back</button>
+  `;
+
+  const backBtn = detailContent.querySelector('#backBtn');
+  backBtn.addEventListener('click', () => showItems(state, market, good));
 }
 
 renderCards();
 navigateTo(location.pathname,{push:false});
-
-/*document.getElementById('backBtn').addEventListener('click', () => {
-  navigateTo('/', {push:true});
-});*/
-
-/*
-window.addEventListener('popstate',()=>navigateTo(location.pathname,{push:false}));*/
 
 
 
