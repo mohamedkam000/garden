@@ -19,7 +19,7 @@ const states = [
                 name: 'Tomatoes',
                 img: 'https://media.istockphoto.com/id/1419141035/photo/cut-red-tomato-close-up-in-a-box.jpg?s=612x612&w=0&k=20&c=eROI2zV4l1ozwwhdcdxgfqiKfynOZ-lAyv0FDUKyGl0='
               },
-              {
+/*              {
                 id: 'carrots',
                 name: 'Carrots',
                 img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpLDKq28AEJ0xY4yeCJJ3Zcb55CFd9Wb1hCwD2nxdd4Zr-AXFPxl6L0Tg&s=10'
@@ -67,7 +67,7 @@ const states = [
             id: 'meat',
             name: 'Meat',
             img: '...'
-          },
+          },*/
         ]
       },
 /*      {
