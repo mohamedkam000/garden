@@ -358,6 +358,46 @@ function showItems(state, market, good) {
   backBtn.addEventListener('click', () => showGoods(state, market));
 }
 
+function showItemDetail(state, market, good, item) {
+  detailContent.innerHTML = `
+    <h2>${item.name} — Prices</h2>
+    <div class="market-grid"></div>
+    <button class="btn" id="backBtn">Back</button>
+  `;
+
+  const pricesGrid = detailContent.querySelector('.market-grid');
+  if (item.quant && item.quant.length > 0) {
+    item.quant.forEach(quant => {
+      const el = document.createElement('article');
+      el.className = 'card';
+      el.innerHTML = `
+        <div class="title-band" style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:120px;">
+          <div class="city" style="font-size:1.5em;font-weight:bold;">${quant.name}</div>
+          <div class="meta" style="margin-top:8px;font-size:1.2em;color:var(--accent);">
+            ${quant.price || 'N/A'}
+          </div>
+        </div>
+      `;
+
+      const tag = document.createElement('div');
+      tag.className = 'tag';
+      tag.textContent = 'Price';
+      el.appendChild(tag);
+
+      pricesGrid.appendChild(el);
+    });
+  } else {
+    const msg = document.createElement('div');
+    msg.textContent = 'No price information available';
+    msg.style.textAlign = 'center';
+    msg.style.padding = '20px';
+    pricesGrid.appendChild(msg);
+  }
+
+  const backBtn = detailContent.querySelector('#backBtn');
+  backBtn.addEventListener('click', () => showItems(state, market, good));
+}
+
 /*function showItemDetail(state, market, good, item) {
   detailContent.innerHTML = `
     <h2>${item.name}</h2>
