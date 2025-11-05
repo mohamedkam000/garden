@@ -64,8 +64,8 @@ function setAccent(hex){
         tag.className = 'tag';
         tag.textContent = 'Alpha';
         el.appendChild(tag);
-        el.addEventListener('click', ()=>navigateTo('/city/'+c.id));
-        el.addEventListener('keypress', (e)=>{ if(e.key==='Enter') navigateTo('/city/'+c.id); });
+        el.addEventListener('click', ()=>navigateTo('city/'+c.id));
+        el.addEventListener('keypress', (e)=>{ if(e.key==='Enter') navigateTo('city/'+c.id); });
         cardsGrid.appendChild(el);
       });
     }
@@ -74,8 +74,8 @@ function setAccent(hex){
       if(opts.push) history.pushState({path}, '', path);
       if(path==='/'||path===''||path==='/index.html') showGrid();
 /*      else if(path==='/page.html/') showAltGrid();*/
-      else if(path.startsWith('/city/')){
-        const id=path.split('/city/')[1];
+      else if(path.startsWith('city/')){
+        const id=path.split('city/')[1];
         const city=cities.find(x=>x.id===id)||cities[0];
         showDetails(city);
       } else showGrid();
@@ -111,7 +111,7 @@ function showGrid(){
 }
 
 function showDetails(city) {
-  fetch(`./city/${city.id}.html`)
+  fetch(`city/${city.id}.html`)
     .then(res => res.text())
     .then(html => {
       detailView.innerHTML = html;
