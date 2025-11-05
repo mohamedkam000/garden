@@ -7,8 +7,8 @@ const states = [
       {
         id: 'central',
         name: 'Central Market',
-        img: 'https://www.sudanakhbar.com/wp-content/uploads/2022/11/%D8%B5%D9%8A%D9%86%D9%8A%D8%A9-%D8%A7%D9%84%D8%B3%D9%88%D9%82-%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2%D9%8A-%D8%A7%D9%84%D8%AE%D8%B1%D8%B7%D9%88%D9%85.jpg'
-/*        goods: [
+        img: 'https://www.sudanakhbar.com/wp-content/uploads/2022/11/%D8%B5%D9%8A%D9%86%D9%8A%D8%A9-%D8%A7%D9%84%D8%B3%D9%88%D9%82-%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2%D9%8A-%D8%A7%D9%84%D8%AE%D8%B1%D8%B7%D9%88%D9%85.jpg',
+        goods: [
           {
             id: 'vegetables',
             name: 'Vegetables',
@@ -68,7 +68,7 @@ const states = [
             name: 'Meat',
             img: '...'
           },
-        ]*/
+        ]
       },
       {
         id: 'sabreen',
@@ -76,22 +76,16 @@ const states = [
         img: 'https://alnawrs.com/wp-content/uploads/2025/06/%D8%B3%D9%88%D9%82-%D8%B5%D8%A7%D8%A8%D8%B1%D9%8A%D9%86.png',
         goods: [
           {
-            id: 'N',
-            name: 'N',
-            img: '...'
+            
           },
         ]
       }
-/*      {
+      {
         id: 'arabi',
         name: 'Al Souq Al Arabi',
         img: 'https://mujaz.alahdath.news/wp-content/uploads/2025/07/%D8%A7%D9%84%D8%B3%D9%88%D9%82-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A-_-%D8%A7%D9%84%D8%AE%D8%B1%D8%B7%D9%88%D9%85--scaled.jpg',
         goods: [
           {
-            id: 'N',
-            name: 'N',
-            price: '$0',
-            img: '...'
           },
         ]
       },
@@ -101,10 +95,6 @@ const states = [
         img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs02t35M8vuXehiN0HdQ_AyBlrrUQlxzNXWQ&s',
         goods: [
           {
-            id: 'N',
-            name: 'N',
-            price: '$0',
-            img: '...'
           },
         ]
       },
@@ -114,12 +104,9 @@ const states = [
         img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs02t35M8vuXehiN0HdQ_AyBlrrUQlxzNXWQ&s',
         goods: [
           {
-            id: 'N',
-            name: 'N',
-            img: '...'
           },
         ]
-      }*/
+      }
     ]
   },
   {
