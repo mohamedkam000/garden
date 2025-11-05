@@ -8,7 +8,7 @@ const states = [
         id: 'central',
         name: 'Central Market',
         img: 'https://www.sudanakhbar.com/wp-content/uploads/2022/11/%D8%B5%D9%8A%D9%86%D9%8A%D8%A9-%D8%A7%D9%84%D8%B3%D9%88%D9%82-%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2%D9%8A-%D8%A7%D9%84%D8%AE%D8%B1%D8%B7%D9%88%D9%85.jpg',
-        goods: [
+/*        goods: [
           {
             id: 'vegetables',
             name: 'Vegetables',
@@ -19,7 +19,7 @@ const states = [
                 name: 'Tomatoes',
                 img: 'https://media.istockphoto.com/id/1419141035/photo/cut-red-tomato-close-up-in-a-box.jpg?s=612x612&w=0&k=20&c=eROI2zV4l1ozwwhdcdxgfqiKfynOZ-lAyv0FDUKyGl0='
               },
-/*              {
+              {
                 id: 'carrots',
                 name: 'Carrots',
                 img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpLDKq28AEJ0xY4yeCJJ3Zcb55CFd9Wb1hCwD2nxdd4Zr-AXFPxl6L0Tg&s=10'
@@ -67,10 +67,10 @@ const states = [
             id: 'meat',
             name: 'Meat',
             img: '...'
-          },*/
-        ]
+          },
+        ]*/
       },
-/*      {
+      {
         id: 'sabreen',
         name: 'Sabreen Market',
         img: 'https://alnawrs.com/wp-content/uploads/2025/06/%D8%B3%D9%88%D9%82-%D8%B5%D8%A7%D8%A8%D8%B1%D9%8A%D9%86.png',
@@ -106,7 +106,7 @@ const states = [
           {
           },
         ]
-      }*/
+      }
     ]
   },
   {
