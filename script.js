@@ -64,7 +64,7 @@ function renderCards(){
   });
 }
 
-function navigateTo(path, opts={push:true}) {
+/*function navigateTo(path, opts={push:true}) {
   if (opts.push) history.pushState({path}, '', path);
   if (path === '/' || path === '' || path.endsWith('index.html')) {
     showGrid();
@@ -85,6 +85,35 @@ function showGrid(){
   gridView.classList.remove('hidden');
   renderCards();
   document.title='Sooq Price';
+}*/
+
+const BASE = '/garden/';
+
+function navigateTo(path, opts={push:true}) {
+  const url = BASE + path.replace(/^\/+/,'');
+  if (opts.push) history.pushState({path}, '', url);
+
+  if (path === '/' || path === '' || path === 'index.html') {
+    showGrid();
+    return;
+  }
+
+  const cityMatch = path.match(/([a-z]+)\.html$/i);
+  if (cityMatch) {
+    const city = cities.find(c => c.id === cityMatch[1]) || cities[0];
+    showDetails(city);
+    return;
+  }
+
+  showGrid();
+}
+
+function showGrid() {
+  detailView.classList.add('hidden');
+  gridView.classList.remove('hidden');
+  renderCards();
+  document.title = 'Sooq Price';
+  history.replaceState({path:'/'}, '', BASE);
 }
 
 function showDetails(city) {
