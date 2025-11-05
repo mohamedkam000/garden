@@ -70,7 +70,7 @@ const states = [
           },
         ]
       },
-      {
+/*      {
         id: 'sabreen',
         name: 'Sabreen Market',
         img: 'https://alnawrs.com/wp-content/uploads/2025/06/%D8%B3%D9%88%D9%82-%D8%B5%D8%A7%D8%A8%D8%B1%D9%8A%D9%86.png',
@@ -106,7 +106,7 @@ const states = [
           {
           },
         ]
-      }
+      }*/
     ]
   },
   {
