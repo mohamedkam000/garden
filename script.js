@@ -124,11 +124,11 @@ function showDetails(city) {
     });
 }
 
-    function showDetails(city){
+/*    function showDetails(city){
       gridView.classList.add('hidden');detailView.classList.remove('hidden');
       detailContent.innerHTML = `<h2>${city.name}</h2><p class="desc">Tracking average market prices for ${city.name}.</p><div style="height:240px;background-image:url('${city.img}');background-size:cover;border-radius:12px;margin-top:12px"></div><div style="margin-top:12px;display:flex;gap:12px;align-items:center"><div class="price">Current: ${city.price}</div><button class="btn" onclick=\"alert('testing pop-up dialogues ${city.name}')\">Track</button></div>`;
       document.title = city.name+' — Price Tracker';
-    }
+    }*/
 
     setInterval(() => {
       document.querySelectorAll('.letter').forEach((span, i) => {
