@@ -224,12 +224,21 @@ function showMarkets(state) {
   const marketGrid = detailContent.querySelector('.market-grid');
 
   state.markets.forEach(market => {
-    const el = document.createElement('div');
-    el.className = 'market-card';
+    const el = document.createElement('article');
+    el.className = 'card market-card';
+    const imgUrl = market.img || 'https://via.placeholder.com/800x500?text=No+Image';
     el.innerHTML = `
-    <div class="img" style="background-image:url('${market.img}')"></div>
-    <div class="name">${market.name}</div>
+      <div class="img" style="background-image:url('${imgUrl}')"></div>
+      <div class="title-band">
+        <div style="display:flex;flex-direction:column">
+          <div class="city">${market.name}</div>
+          <div class="desc">Open market to view goods</div>
+        </div>
+      </div>
     `;
+    el.addEventListener('click', () => showGoods(state, market));
+    marketGrid.appendChild(el);
+  });
 
   const backBtn = detailContent.querySelector('#backBtn');
   backBtn.addEventListener('click', () => showGrid());
@@ -276,9 +285,9 @@ function showGoodDetail(state, market, good) {
 renderCards();
 navigateTo(location.pathname,{push:false});
 
-document.getElementById('backBtn').addEventListener('click', () => {
+/*document.getElementById('backBtn').addEventListener('click', () => {
   navigateTo('/', {push:true});
-});
+});*/
 
 /*
 window.addEventListener('popstate',()=>navigateTo(location.pathname,{push:false}));*/
