@@ -2,7 +2,7 @@ const states = [
   {
     id: 'khartoum',
     name: 'Khartoum',
-    img: 'https://images.unsplash.com/photo-1659864216522-494efbd76895?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8a2hhcnRvdW18ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=1200', 
+    img: 'https://images.unsplash.com/photo-1659864216522-494efbd76895?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8a2hhcnRvdW18ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=1200',
     markets: [
       {
         id: 'central',
@@ -39,12 +39,12 @@ const states = [
                   {
                     id: 'single',
                     name: 'Single',
-                    price: '1000 SDG'
+                    price_key: 'apples_s'
                   },
                   {
                     id: 'multiple',
                     name: 'Multiple',
-                    price: '1000 SDG'
+                    price_key: 'apples_m'
                   }
                 ]
               },
@@ -56,7 +56,19 @@ const states = [
               {
                 id: 'oranges',
                 name: 'Oranges',
-                img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiYWJja7ljHmJKufcD2q7NcOunbKZv5Mglj67WpYJ7zSMaHKvfm6Bx2Us&s=10'
+                img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiYWJja7ljHmJKufcD2q7NcOunbKZv5Mglj67WpYJ7zSMaHKvfm6Bx2Us&s=10',
+                quant: [
+                  {
+                    id: 'single',
+                    name: 'Single',
+                    price_key: 'oranges_s'
+                  },
+                  {
+                    id: 'multiple',
+                    name: 'Multiple',
+                    price_key: 'oranges_m'
+                  }
+                ]
               },
               {
                 id: 'bananas',
@@ -171,6 +183,24 @@ const gridView = document.getElementById('gridView');
 const detailView = document.getElementById('detailView');
 const detailContent = document.getElementById('detailContent');
 
+let prices = {};
+
+async function initializeApp() {
+  try {
+    const res = await fetch('https://raw.githubusercontent.com/mohamedkam000/prices/main/data.json');
+    if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    const data = await res.json();
+    prices = data;
+    console.log('Successfully fetched prices:', prices);
+  } catch (error) {
+    console.warn('Failed to fetch prices:', error);
+  }
+  renderCards();
+  navigateTo(location.pathname,{push:false});
+}
+
 function renderCards() {
   cardsGrid.innerHTML = '';
   states.forEach(state => {
@@ -228,7 +258,7 @@ function navigateTo(path, opts={push:true}) {
     const state = states.find(s => s.id === goodMatch[1]);
     const market = state?.markets.find(m => m.id === goodMatch[2]);
     const good = market?.goods.find(g => g.id === goodMatch[3]);
-    if (state && market && good) { showGoodDetail(state, market, good); return; }
+    if (state && market && good) { showItemDetail(state, market, good); return; }
   }
 
   showGrid();
@@ -280,6 +310,7 @@ function showMarkets(state) {
 
   const backBtn = detailContent.querySelector('#backBtn');
   backBtn.addEventListener('click', () => showGrid());
+  history.pushState({path:`state/${state.id}`}, '', `${BASE}state/${state.id}`);
 }
 
 function showGoods(state, market) {
@@ -323,44 +354,80 @@ function showGoods(state, market) {
 
   const backBtn = detailContent.querySelector('#backBtn');
   backBtn.addEventListener('click', () => showMarkets(state));
+  history.pushState({path:`state/${state.id}/market/${market.id}`}, '', `${BASE}state/${state.id}/market/${market.id}`);
 }
 
 function showItems(state, market, good) {
   detailContent.innerHTML = `
     <h2>${good.name}</h2>
-    <div class="market-grid"></div>
+    <div class="item-quant-grid"></div>
     <button class="btn" id="backBtn">Back</button>
   `;
-  const itemsGrid = detailContent.querySelector('.market-grid');
+
+  const itemsGrid = detailContent.querySelector('.item-quant-grid');
 
   good.items.forEach(item => {
-    const el = document.createElement('article');
-    el.className = 'card';
-    el.innerHTML = `
-      <div class="img" style="background-image:url('${item.img || ''}')"></div>
-      <div class="title-band" style="display:flex;flex-direction:column;align-items:center;">
-        <div class="city" style="font-size:1.2em;font-weight:bold">${item.name}</div>
-      </div>
-      <div class="meta" style="text-align:center;">
-        <div class="price">Price: ${item.price || '$0'}</div>
-      </div>
-    `;
-    const tag = document.createElement('div');
-    tag.className = 'tag';
-    tag.textContent = 'Item';
-    el.appendChild(tag);
+    if (item.quant && item.quant.length > 0) {
+      item.quant.forEach(quant => {
+        const priceValue = prices[quant.price_key] || 'Price N/A';
+        const displayPrice = `${priceValue} SDG`;
 
-    el.addEventListener('click', () => showItemDetail(state, market, good, item));
-    itemsGrid.appendChild(el);
+        const el = document.createElement('article');
+        el.className = 'card';
+        el.innerHTML = `
+          <div class="img" style="background-image:url('${item.img || ''}')"></div>
+          <div class="title-band" style="display:flex;flex-direction:column;align-items:center;">
+            <div class="city" style="font-size:1.2em;font-weight:bold">${item.name} (${quant.name})</div>
+          </div>
+          <div class="meta" style="text-align:center;">
+            <div class="price">Price: ${displayPrice}</div>
+          </div>
+        `;
+        const tag = document.createElement('div');
+        tag.className = 'tag';
+        tag.textContent = 'Price';
+        el.appendChild(tag);
+        el.addEventListener('click', () => showItemDetail(state, market, good, {...item, ...quant, price: displayPrice}));
+        itemsGrid.appendChild(el);
+      });
+    } else {
+      // For items without the 'quant' structure (e.g., Watermelon, Bananas)
+      const priceKey = `${item.id}_s`; // Default to single key
+      const priceValue = prices[priceKey] || 'Price N/A';
+      const displayPrice = `${priceValue} SDG`;
+
+      const el = document.createElement('article');
+      el.className = 'card';
+      el.innerHTML = `
+          <div class="img" style="background-image:url('${item.img || ''}')"></div>
+          <div class="title-band" style="display:flex;flex-direction:column;align-items:center;">
+            <div class="city" style="font-size:1.2em;font-weight:bold">${item.name}</div>
+          </div>
+          <div class="meta" style="text-align:center;">
+            <div class="price">Price: ${displayPrice}</div>
+          </div>
+        `;
+        const tag = document.createElement('div');
+        tag.className = 'tag';
+        tag.textContent = 'Item';
+        el.appendChild(tag);
+        
+        el.addEventListener('click', () => showItemDetail(state, market, good, {...item, price: displayPrice}));
+        itemsGrid.appendChild(el);
+    }
   });
 
   const backBtn = detailContent.querySelector('#backBtn');
   backBtn.addEventListener('click', () => showGoods(state, market));
+  history.pushState({path:`state/${state.id}/market/${market.id}/good/${good.id}`}, '', `${BASE}state/${state.id}/market/${market.id}/good/${good.id}`);
 }
 
 function showItemDetail(state, market, good, item) {
+  const itemName = item.name + (item.quant ? ` (${item.quant.name})` : '');
+  const displayPrice = item.price || 'Price N/A';
+
   detailContent.innerHTML = `
-    <h2>${item.name}</h2>
+    <h2>${itemName}</h2>
     <div class="market-grid"></div>
     <button class="btn" id="backBtn">Back</button>
   `;
@@ -380,7 +447,7 @@ function showItemDetail(state, market, good, item) {
       <div class="city" style="font-size:2em;font-weight:bold;">${item.name}</div>
     </div>
     <div class="meta" style="text-align:center;margin-top:10px;">
-      <div class="price" style="font-size:1.3em;color:var(--accent);">Price: ${item.price || '$0'}</div>
+      <div class="price" style="font-size:1.3em;color:var(--accent);">Price: ${displayPrice}</div>
     </div>
   `;
 
@@ -395,34 +462,7 @@ function showItemDetail(state, market, good, item) {
   backBtn.addEventListener('click', () => showItems(state, market, good));
 }
 
-/*function showItemDetail(state, market, good, item) {
-  detailContent.innerHTML = `
-    <h2>${item.name}</h2>
-    <div class="card detail" style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:200px;">
-      <div style="font-size:2em;font-weight:bold">${item.name}</div>
-      <div style="margin-top:10px;font-size:1.3em;color:var(--accent)">${item.price || '$0'}</div>
-    </div>
-    <button class="btn" id="backBtn">Back</button>
-  `;
-  const backBtn = detailContent.querySelector('#backBtn');
-  backBtn.addEventListener('click', () => showItems(state, market, good));
-}*/
-
-renderCards();
-navigateTo(location.pathname,{push:false});
-
-
-
-
-
-
-
-
-
-
-
-
-
+initializeApp();
 
 /*
  * This sets the UI to use the light theme defined in the style file.
@@ -462,7 +502,7 @@ titleText.split('').forEach((ch,i)=>{
 });
 
 /*
- * This small snippet sets the interval for changing colours on the title.
+ * This small script sets the interval for changing colours on the title.
  */
 setInterval(() => {
   document.querySelectorAll('.letter').forEach((span, i) => {
@@ -471,7 +511,7 @@ setInterval(() => {
 }, 200);
 
 /*
- * This is the footer. It shows my name based in the accent colour.
+ * This is the footer. It shows my name based on the accent colour.
  * Unless you want it to glow, don't touch this part.
  */
 const fooText = 'Muhammad Kamal';
